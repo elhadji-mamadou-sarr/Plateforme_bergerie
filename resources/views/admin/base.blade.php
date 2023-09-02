@@ -62,13 +62,24 @@
 				</a>
 			</li>
 			<li>
-				<a href="#" class="logout">
-					<i class='bx bxs-log-out-circle' ></i>
-					<span class="text">Logout</span>
-				</a>
+                   
 			</li>
 		</ul>
+        
+        <div class="side-menu">
+            
+            <form method="POST" action="{{ route('logout') }}" x-data>
+                @csrf
+                <button
+                @click.prevent="$root.submit();" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                    {{ __('Se deconnecter') }}
+                </button>
+            </form>
+
+        </div>
 	</section>
+
 	<!-- SIDEBAR -->
     pending
     <section id="content">
@@ -89,7 +100,7 @@
                 <span class="num">8</span>
             </a>
             <a href="#" class="profile">
-                <img src="img/people.png">
+                <img src="{{ asset('storage/' . Auth::user()->personne->photo) }}" alt="Profile utilisateur">
             </a>
         </nav>
 
@@ -284,6 +295,21 @@
     }
     #sidebar .side-menu li a.logout {
         color: var(--red);
+    }
+
+    .logout{
+        border: none;
+            outline: none;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);/*#fff;*/
+            color: white/*#275360*/;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 15px;
+            padding: 8px 16px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-left: 15%;
+            transition: 0.15s ease;
     }
     #sidebar .side-menu.top li a:hover {
         color: var(--blue);

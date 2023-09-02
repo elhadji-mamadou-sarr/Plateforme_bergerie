@@ -17,6 +17,7 @@ return new class extends Migration
             $table->decimal('prix');
             $table->string('généalogie');
             $table->string('race');
+            $table->string('image');
             $table->unsignedBigInteger('personne_id');
             $table->foreign('personne_id')->references('id_personne')->on('personnes')->onDelete('cascade');
             $table->timestamps();

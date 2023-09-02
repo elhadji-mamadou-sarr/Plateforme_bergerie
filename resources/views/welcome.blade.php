@@ -16,7 +16,7 @@
       <img src="images/logo.png" alt="">
      </div>
      <ul class="menu">
-        <li><a href="#">Home</a></li>
+        <li><a href="#">Dashboard</a></li>
         <li><a href="#">Latest</a></li>
         <li><a href="#">Category</a></li>
          <li><a href="#">Services</a></li>

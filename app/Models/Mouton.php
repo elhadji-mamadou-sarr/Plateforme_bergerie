@@ -16,5 +16,6 @@ class Mouton extends Model
         'généalogie',
         'race',
         'personne_id',
+        'image',
     ];
 }

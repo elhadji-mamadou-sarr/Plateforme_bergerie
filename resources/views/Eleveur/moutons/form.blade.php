@@ -19,11 +19,11 @@
                     </div>
                     <div class="input-box">
                         <span class="details">Race</span>
-                        <input type="text" placeholder="Entrer la race du mouton" name="race" value="{{$mouton->prenom}}">
+                        <input type="text" placeholder="Entrer la race du mouton" name="race" value="{{$mouton->race}}">
                     </div>
                     <div class="input-box">
                         <span class="details">Généalogie</span>
-                        <input type="text" placeholder="Entrer la généalogie du mouton" name="généalogie	" value="{{$mouton->généalogie	}}">
+                        <input type="text" placeholder="Entrer la généalogie du mouton" name="généalogie" value="{{$mouton->généalogie	}}">
                     </div>
                     <div class="input-box">
                         <span class="details">Prix</span>

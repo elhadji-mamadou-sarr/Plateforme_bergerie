@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('profil');
+            $table->string('profil')->default('Eleveur');
             $table->unsignedBigInteger('personne_id');
             $table->foreign('personne_id')->references('id_personne')->on('personnes')->onDelete('cascade');
             $table->rememberToken();
