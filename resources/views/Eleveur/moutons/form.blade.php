@@ -1,4 +1,4 @@
-@extends('Eleveur.base')
+@extends('admin.base')
 
 @section('title', $mouton->exists ? "Modifier un mouton" : "Ajouter un mouton")
 
@@ -29,23 +29,10 @@
                         <span class="details">Prix</span>
                         <input type="text" placeholder="Entrer le prix du mouton" name="prix" value="{{$mouton->prix}}">
                     </div>
-                    <div class="input-box">
                         <span class="details">Photo</span>
-                        <input class="form-control form-control-lg" name="image" id="formFileLg" type="file">
-                      </div>
-                    <div class="input-box">
-                        <span class="details">Eleveur</span>
-                        <select id="personne_id" name="personne_id" class="form-select">
-                            @if ($mouton->exists)
-                                <option value="{{ $mouton->personne_id }}"></option>
-                            @else
-                            @foreach ($eleveurs as $item)
-                                <option value="{{$item->id_personne}}"> {{$item->nom}}</option>
-                            @endforeach
+                        <input class="form-control form-control-lg" name="image" id="formFileLg" type="file" >
 
-                            @endif
-                        </select>
-                    </div>
+                        <input type="hidden" name="personne_id" value="{{ Auth::user()->personne->id_personne }}">
 
                 </div>
 
@@ -172,6 +159,10 @@
     form input[type="radio"]{
     display: none;
     }
+    form input[type="file"]{
+    border-color: #9b59b6;
+    }
+
     form .button{
     height: 45px;
     margin: 15px 0

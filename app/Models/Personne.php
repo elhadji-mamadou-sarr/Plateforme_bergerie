@@ -20,4 +20,14 @@ class Personne extends Model
         'adresse',
         'photo'
     ];
+
+    public function moutons()
+    {
+        return $this->hasMany(Mouton::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }

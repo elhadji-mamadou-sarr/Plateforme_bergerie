@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Mouton;
 use App\Models\Personne;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class EleveurController extends Controller
@@ -15,7 +16,7 @@ class EleveurController extends Controller
      */
     public function index()
     {
-        $moutons = Mouton::all();
+        $moutons = Mouton::where('personne_id', Auth::user()->personne->id_personne)->get();
 
         return view('Eleveur.moutons.index', compact('moutons'));
     }
@@ -43,7 +44,7 @@ class EleveurController extends Controller
             'généalogie' => 'required|string',
             'prix' => 'required|numeric',
             'personne_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $imagePath = null;
@@ -69,7 +70,9 @@ class EleveurController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $mouton = Mouton::findOrFail($id);
+
+        return view('Eleveur.moutons.show', compact('mouton'));
     }
 
     /**
@@ -93,7 +96,7 @@ class EleveurController extends Controller
             'généalogie' => 'required|string',
             'prix' => 'required|numeric',
             'personne_id' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
 
         $imagePath = null;
@@ -103,7 +106,7 @@ class EleveurController extends Controller
             }
             $imagePath = $request->file('image')->store('image_moutons', 'public');
             $mouton->image = $imagePath;
-      
+
         }
 
         $mouton->nom_mouton = $validatedData['nom_mouton'];

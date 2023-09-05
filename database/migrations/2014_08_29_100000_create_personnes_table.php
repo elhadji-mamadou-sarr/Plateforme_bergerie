@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('telephone')->unique();
             $table->string('ville');
             $table->string('adresse');
-            $table->string('photo');
+            $table->string('photo')->nullable();
             $table->timestamps();
         });
     }

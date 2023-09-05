@@ -1,4 +1,4 @@
-@extends('Eleveur.base')
+@extends('admin.base')
 
 @section('title', 'Liste des moutons')
 
@@ -17,7 +17,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Eleveur</th>
+                            <th>image</th>
                             <th>email</th>
                             <th>contact</th>
                             <th class="text-center">Action</th>
@@ -39,12 +39,13 @@
                             </td>
                         </tr>
                         @empty
+                            <tr>
+                                <td><h3 rowspan="4">Aucun mouton disponible</h3></td>
+                            </tr>
+                      @endforelse
                         <tr>
-                            <td><h3 rowspan="4">Aucun mouton disponible</h3></td>
+                            <td><h3 rowspan="4">{{ Auth::user()->personne->nom }}</h3></td>
                         </tr>
-
-                        @endforelse 
-
                     </tbody>
                 </table>
             </div>

@@ -8,7 +8,13 @@
     <!-- Google Fonts Link For Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 
+    <link rel="stylesheet" href="{{ asset('storage/css/accueil.css') }}">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0">
+
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
 </head>
 <body>
 
@@ -39,7 +45,7 @@
                     <h2>Welcome Back</h2>
                     <p>Please log in using your personal information to stay connected with us.</p>
                 </div>
-                
+
                 <div class="form-content">
 
                     @include('auth.login')
@@ -56,27 +62,104 @@
                     <p>To become a part of our community, please sign up using your personal information.</p>
                 </div>
                 <div class="form-content">
-    
+
                     @include('auth.register')
-                    
+
                     <div class="bottom-link">
                         Already have an account?
                         <a href="#" id="login-link">Login</a>
                     </div>
-                
+
                 </div>
             </div>
         </div>
 
 
     </div>
+<!--
+    <section class="shop-section">
+        <div class="shop-images">
+            @foreach ($moutons as $mouton)
+                <div class="shop-link">
+                    <h3>{{ $mouton->nom_mouton }} &amp; </h3>
+                    <img src="{{ asset('storage/' .$mouton->image) }}" alt="card">
+                    <a href="{{ route('detail.mouton', $mouton) }}">Details</a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+-->
+
+
+    <section class="products sectionn" id="products">
+
+
+        <div class="swiper product-slider">
+
+              <div class="swiper-wrapper">
+                @foreach ($moutons as $mouton)
+
+                    <div class="swiper-slide box">
+                        <img src="{{ asset('storage/' .$mouton->image) }}" alt="card">
+                       <h3>{{ $mouton->nom_mouton }}</h3>
+                       <div class="price">prix: {{ $mouton->prix }} f</div>
+                       <div class="stars">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star-half-alt"></i>
+                       </div>
+                       <a href="#" class="btn">ajouter à la panier</a>
+                    </div>
+
+                @endforeach
+
+              </div>
+
+        </div>
+
+        <div class="swiper product-slider">
+
+              <div class="swiper-wrapper">
+                @foreach ($moutons as $mouton)
+
+                    <div class="swiper-slide box">
+                        <img src="{{ asset('storage/' .$mouton->image) }}" alt="card">
+                       <h3>{{ $mouton->nom_mouton }}</h3>
+                       <div class="price">prix: {{ $mouton->prix }} f</div>
+                       <div class="stars">
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star"></i>
+                          <i class="fas fa-star-half-alt"></i>
+                       </div>
+                       <a href="#" class="btn">ajouter à la panier</a>
+                    </div>
+
+                @endforeach
+
+              </div>
+
+        </div>
+
+
+
+  </section>
+
+
+
+
+
+
 
     <footer>
         <div class="content">
           <div class="top">
             <div class="logo-details">
               <i class="fab fa-slack"></i>
-              <span class="logo_name">CodingLab</span>
+              <span class="logo_name">Kharb-bi</span>
             </div>
             <div class="media-icons">
               <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -133,6 +216,10 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
 </body>
 </html>
 
@@ -153,7 +240,8 @@
         .body {
             height: 100vh;
             width: 100%;
-            background: url("/storage//kharBi.jpg") center/cover no-repeat;
+            background: url("/storage//gt.png") center/cover no-repeat;
+            background-size: cover;
         }
 
         header {
@@ -309,14 +397,14 @@
 
         .login .form-details {
             padding: 0 40px;
-            background: url("/storage//kharBi.jpg") center/cover no-repeat;
+            background: url("/storage//Bei.png") center/cover no-repeat;
             background-position: center;
             background-size: cover;
         }
 
         .signup .form-details {
             padding: 0 20px;
-            background: url("/storage//kharBi.jpg") center/cover no-repeat;
+            background: url("/storage//ladoum.png") center/cover no-repeat;
             background-position: center;
             background-size: cover;
         }
@@ -498,9 +586,185 @@
             }
     }
 
+    /**********MAIN********/
+
+    /**********MAIN********/
+
+
+    /*section des image **/
+
+
+        :root{
+                --orange:#ff7800;
+                --black: #130f40;
+                --light-color: #666;
+                --box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .1);
+                --border:.2rem solid rgba(0, 0, 0, .1);
+                --outline:.1rem solid rgba(0, 0, 0, .1);
+                --outline-hover:.2rem solid var(--black);
+            }
+
+            html{
+                scroll-behavior: smooth;
+                scroll-padding-top: 7rem;
+            }
+
+            .btn{
+                margin-top: 1rem;
+                margin-bottom: 2rem;
+                display: inline-block;
+                padding: .4rem 2rem;
+                font-size: 1.5rem;
+                border-radius: .5rem;
+                border: 1px solid var(--black);
+                color: var(--black);
+                cursor: pointer;
+                background: none;
+            }
+
+            .btn:hover{
+                background:  linear-gradient(135deg, #71b7e6, #9b59b6);
+                color: white;
+            }
+
+
+            section{
+                padding: 2rem 9%;
+                font-size: 62.5%;
+            }
+
+
+            .products .product-slider{
+                padding: 1rem;
+            }
+
+            .products .product-slider:first-child{
+                margin-bottom: 1rem;
+            }
+
+            .products .product-slider .box{
+                background: #fff;
+                border-radius: .5rem;
+                text-align: center;
+                padding-bottom: 2rem 2rem ;
+                outline-offset: -1rem;
+                outline: var(--outline);
+                box-shadow: var(--box-shadow);
+                transition:  .2s linear;
+            }
+
+            .products .product-slider .box a{
+                text-decoration: none
+            }
+
+            .products .product-slider .box:hover{
+                outline-offset: 0rem;
+            }
+
+            .products .product-slider .box img{
+                height: 15rem;
+            }
+
+            .products .product-slider .box h3{
+                font-size: 2.5rem;
+                color: var(--black);
+            }
+
+            .products .product-slider .box .price{
+                font-size: 2rem;
+                color: var(--light-color);
+                padding: .5rem 0;
+            }
+
+            .products .product-slider .box .price{
+                font-size: 1.5rem;
+                color: var(--light-color);
+                padding: .5rem 0;
+            }
+
+
+
+
+            @media(max-width:991px){
+
+                html{
+                    font-size: 55%;
+                }
+                .header{
+                    padding: 2rem;
+                }
+
+                section{
+                    padding: 2rem ;
+                }
+
+                .chemise {
+                    display: block;
+                }
+
+            }
+
+            @media(max-width:768px){
+
+                #menu-btn{
+                    display: inline-block;
+                }
+
+                .header .seach-form {
+                    width: 90%;
+                }
+
+                .header .navbar{
+                    position: absolute;
+                    top: 110%; right:-110%;
+                    width: 30rem;
+                    box-shadow: var(--box-shadow);
+                    border-radius: .5rem;
+                    background: #fff;
+                }
+
+                .header .navbar.active{
+                    right: 2rem;
+                    transition: .4s linear;
+                }
+
+                .header .navbar a{
+                    font-size: 2rem;
+                    margin: 2rem 2.5rem;
+                    display: block;
+                }
+
+                .footer .box-container{
+                    display: block;
+                }
+
+
+            }
+
+            @media(max-width:450px){
+
+                html{
+                    font-size: 50%;
+                }
+
+                .heading{
+                    font-size: 50%;
+                }
+
+                .footer{
+                    text-align: center;
+                }
+
+
+        }
+
+
+    /*section des image **/
+
+
 
     /*------------------Footer-----------------------*/
-       
+
         footer{
         background: linear-gradient(135deg, #71b7e6, #9b59b6);/*#140B5C*/;
         width: 100%;
@@ -769,4 +1033,50 @@
             formPopup.classList[link.id === 'signup-link' ? 'add' : 'remove']("show-signup");
         });
     });
+
+    /*******Swiper pour les images **************/
+
+
+        var swiper = new Swiper(".product-slider", {
+            loop:true,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 7500,
+                disbleOnInteraction: false,
+            },
+            breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1020: {
+                slidesPerView: 3,
+            },
+            },
+        });
+
+        var swiper = new Swiper(".review-slider", {
+            loop:true,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 7500,
+                disbleOnInteraction: false,
+            },
+            breakpoints: {
+            0: {
+                slidesPerView: 1,
+            },
+            768: {
+                slidesPerView: 2,
+            },
+            1020: {
+                slidesPerView: 3,
+            },
+            },
+        });
+
+
+    /*******Swiper pour les images **************/
 </script>

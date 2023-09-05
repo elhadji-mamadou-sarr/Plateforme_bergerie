@@ -41,8 +41,9 @@
                     <div class="input-box">
                         <span class="details">Profil</span>
                         <select class="form-select form-select-lg mb-3" name="profil" aria-label="Large select example" style="border-color: #9b59b6;">
-                            <option value="Administrateur">Administrateur</option>
-                            <option value="Eleveur">Eleveur</option>
+                            @foreach ($profils as $profil)
+                                <option value="{{ $profil->id }}">{{ $profil->name }}</option>
+                            @endforeach
                           </select>
                     </div>
                     <div class="input-box">

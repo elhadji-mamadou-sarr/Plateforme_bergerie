@@ -15,7 +15,7 @@ class MiddleProfiles
      */
     public function handle(Request $request, Closure $next, string $profil): Response
     {
-        if($request->user()->profil === $profil) return $next($request);
+        if($request->user()->profils()->where('name', $profil)->exists()) return $next($request);
 
         abort(403);
     }

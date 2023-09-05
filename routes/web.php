@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\AccueilController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Eleveur\EleveurController;
+use App\Http\Controllers\MoutonController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,26 +22,39 @@ use Illuminate\Support\Facades\Route;
     //return view('welcome');
 //});
 
+Route::get('/storage/{filename}', function ($filename) {
+    $path = storage_path('app/public/' . $filename);
 
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'profil:Adminstrateur'])->group(function () {
+    if (!file_exists($path)) {
+        abort(404);
+    }
+
+    return response()->file($path);
+})->where('filename', '.*');
+
+
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'profil:Administrateur'])->group(function () {
     Route::resource('administrateur', AdminController::class)->except('destroy');
     Route::get('eleveur/{id}/delete', [AdminController::class, 'destroy'])->name('administrateur.delete');
 
 });
 
-Route::prefix('eleveur')->name('eleveur.')->middleware('auth')->group(function (){
+Route::prefix('eleveur')->name('eleveur.')->middleware(['auth', 'profil:Administrateur'])->group(function (){
     Route::resource('mouton', EleveurController::class);
     Route::get('mouton/{id}/delete', [AdminController::class, 'destroy'])->name('mouton.delete');
 
 });
 
-Route::get('/', function () {
-    return view('accueil');
-});
+    Route::get('/', [MoutonController::class, 'index'])->name('index');
+    Route::get('details/{mouton}', [MoutonController::class, 'show'])->name('detail.mouton');
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified',])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
+    Route::get('accueil/', [AccueilController::class, 'index'])->name('accueil');
 });
+
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');

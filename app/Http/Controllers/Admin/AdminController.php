@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonneFormRequest;
 use App\Models\Personne;
+use App\Models\Profil;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,7 +29,8 @@ class AdminController extends Controller
     public function create()
     {
         $admin = new Personne();
-        return view('admin.administrateur.form', compact('admin'));
+        $profils = Profil::all();
+        return view('admin.administrateur.form', compact('admin', 'profils'));
     }
 
     /**
@@ -51,6 +54,8 @@ class AdminController extends Controller
             $imagePath = $request->file('photo')->store('photos', 'public');
         }
 
+
+
         $personne = new Personne();
         $personne->nom =  $validatedData['nom'] ;
         $personne->prenom =  $validatedData['prenom'] ;
@@ -69,6 +74,11 @@ class AdminController extends Controller
         $user->password = Hash::make($validatedData['email']);
         $user->personne_id = $personne->id_personne;
         $user->save();
+
+        DB::table('profil_user')->insert([
+            'user_id' => $user->id,
+            'profil_id' => $validatedData['profil'],
+        ]);
 
         return redirect()->route('admin.administrateur.index')->with('success', 'La personne a été ajouter avec succès !');
 

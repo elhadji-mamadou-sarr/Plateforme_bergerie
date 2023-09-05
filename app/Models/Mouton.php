@@ -18,4 +18,10 @@ class Mouton extends Model
         'personne_id',
         'image',
     ];
+
+    public function personne()
+    {
+        return $this->belongsTo(Personne::class, 'personne_id');
+    }
+
 }

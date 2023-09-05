@@ -63,8 +63,13 @@ class User extends Authenticatable
 
 
     public function personne()
-{
-    return $this->belongsTo(Personne::class, 'personne_id');
-}
+    {
+        return $this->belongsTo(Personne::class, 'personne_id');
+    }
+
+    function profils(){
+
+        return $this->belongsToMany(Profil::class);
+    }
 
 }

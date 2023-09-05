@@ -22,52 +22,99 @@
 			<i class='bx bxs-smile'></i>
 			<span class="text">Khar-bi</span>
 		</a>
-		<ul class="side-menu top">
-			<li class="active">
-				<a href="#">
-					<i class='bx bxs-dashboard' ></i>
-					<span class="text">Dashboard</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">My Store</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Analytics</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Message</span>
-				</a>
-			</li>
-			<li>
-				<a href="">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Membres</span>
-				</a>
-			</li>
-		</ul>
+
+        @if (Auth::user()->profils()->where('name', "Administrateur")->exists())
+
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="{{ route('admin.administrateur.index') }}">
+                        <i class='bx bxs-dashboard' ></i>
+                        <span class="text">Eleveurs</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('eleveur.mouton.index') }}">
+                        <i class='bx bxs-dashboard' ></i>
+                        <span class="text">Moutons</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class='bx bxs-shopping-bag-alt' ></i>
+                        <span class="text">My Store</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-doughnut-chart' ></i>
+                        <span class="text">Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-message-dots' ></i>
+                        <span class="text">Message</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class='bx bxs-group' ></i>
+                        <span class="text">Membres</span>
+                    </a>
+                </li>
+            </ul>
+
+        @elseif(!Auth::user()->personne->profil == "Administrateur")
+
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="{{ route('eleveur.mouton.index') }}">
+                        <i class='bx bxs-dashboard' ></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-shopping-bag-alt' ></i>
+                        <span class="text">My Store</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-doughnut-chart' ></i>
+                        <span class="text">Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class='bx bxs-message-dots' ></i>
+                        <span class="text">Message</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class='bx bxs-group' ></i>
+                        <span class="text">Membres</span>
+                    </a>
+                </li>
+            </ul>
+
+        @endif
+
+
 		<ul class="side-menu">
 			<li>
 				<a href="#">
-					<i class='bx bxs-cog' ></i>
-					<span class="text">Settings</span>
+				<!--	<i class='bx bxs-cog' ></i>
+					<span class="text">Settings</span> -->
 				</a>
 			</li>
-			<li>
-                   
-			</li>
 		</ul>
-        
+
+
         <div class="side-menu">
-            
+
             <form method="POST" action="{{ route('logout') }}" x-data>
                 @csrf
                 <button
@@ -81,7 +128,6 @@
 	</section>
 
 	<!-- SIDEBAR -->
-    pending
     <section id="content">
         <!-- NAVBAR -->
         <nav>
@@ -100,6 +146,7 @@
                 <span class="num">8</span>
             </a>
             <a href="#" class="profile">
+                {{ Auth::user()->personne->nom }}
                 <img src="{{ asset('storage/' . Auth::user()->personne->photo) }}" alt="Profile utilisateur">
             </a>
         </nav>
