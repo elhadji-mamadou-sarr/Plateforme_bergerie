@@ -28,7 +28,7 @@
                         <tr>
                             <td>
                                 <img src="{{ asset('storage/' . $mouton->image) }}" alt="Image du mouton">
-                                {{ $mouton->nom_mouton }}
+                                
                             </td>
                             <td>{{ $mouton->race }}</td>
                             <td>{{ $mouton->généalogie }}</td>
@@ -43,9 +43,6 @@
                                 <td><h3 rowspan="4">Aucun mouton disponible</h3></td>
                             </tr>
                       @endforelse
-                        <tr>
-                            <td><h3 rowspan="4">{{ Auth::user()->personne->nom }}</h3></td>
-                        </tr>
                     </tbody>
                 </table>
             </div>

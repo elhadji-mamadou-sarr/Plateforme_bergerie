@@ -3,12 +3,12 @@
 <link rel="stylesheet" href="{{ asset('storage/css/accueil.css') }}">
 
 <div class="bodyy">
+<div class="d-block">
 
-    <div class="d-flex justify-content-between">
-        <div class="d-flex">
+
+    <div class="d-flex justify-content-between m-3">
             <button onclick="window.history.back()">Retour</button>
-        </div>
-    </div><br>
+    </div>
 
     <div class="contenue" >
 
@@ -19,9 +19,10 @@
 
                 <div class="topic">@yield('title')</div>
 
-                <i class="fas fa-envelope"></i>&nbsp;&nbsp;&nbsp;{{ $mouton->personne->email}} <br>
-                <i class="fas fa-phone-alt"></i>&nbsp;&nbsp;&nbsp;{{ $mouton->personne->telephone}} <br>
-                <i class="fas fa-map-marker-alt"></i>&nbsp;&nbsp;&nbsp;{{ $mouton->personne->adresse}} <br>
+                <br>
+                <p><i class="fas fa-envelope" style="padding: 3%"></i>&nbsp;&nbsp;&nbsp;{{ $mouton->personne->email}} </p>
+                <p><i class="fas fa-phone-alt" style="padding: 3%"></i>&nbsp;&nbsp;&nbsp;{{ $mouton->personne->telephone}} </p>
+                <p><i class="fas fa-map-marker-alt" style="padding: 3%"></i>&nbsp;&nbsp;&nbsp;{{ $mouton->personne->adresse}} </p><br>
 
             </div>
             <hr>
@@ -29,12 +30,12 @@
 
                     <div class="right-side">
                         <div class="topic-text">Nous contacter</div>
-                        <form action="#">
+                        <form action="{{ route('client.contact')}}">
                                 <div class="input-box">
-                                    <input type="text" placeholder="Enter your name">
+                                    <input type="text" name="name" placeholder="Enter your name">
                                 </div>
                                 <div class="input-box">
-                                    <input type="text" placeholder="Enter your email">
+                                    <input type="text" name="email" placeholder="Enter your email">
                                 </div>
                                 <div class="input-box message-box">
                                     <textarea name="message" id="" placeholder="Entrer votre message" cols="30" rows="10"></textarea>
@@ -71,6 +72,7 @@
 
 
     </div>
+</div>
 </div>
 
 
@@ -127,6 +129,7 @@
         .contenue .box.one{
         padding: 35px 5px 0px 35px;
         }
+
         .box.one .details .topic{
         font-size: 30px;
         font-weight: 500;
@@ -322,12 +325,28 @@
     border: none;
     padding: 8px 16px;
     border-radius: 6px;
-    background: #3e2093;
+    background:linear-gradient(135deg, #71b7e6, #9b59b6) ;
     cursor: pointer;
     transition: all 0.3s ease;
     }
     .button input[type="button"]:hover{
-    background: #5029bc;
+    background: linear-gradient(135deg, #9b59b6, #71b7e6);
     }
+
+    button{
+    color: #fff;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    background:linear-gradient(135deg, #71b7e6, #9b59b6) ;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    }
+    button:hover{
+    background: linear-gradient(135deg, #9b59b6, #71b7e6);
+    }
+
 
 </style>

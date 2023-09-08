@@ -19,7 +19,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $eleveurs = Personne::all()->where('profil', 'Eleveur');
+        $eleveurs = Personne::all()->where('profil', '2');
         return view('admin.administrateur.index', compact('eleveurs'));
     }
 
@@ -99,13 +99,14 @@ class AdminController extends Controller
     public function edit(string $id)
     {
         $admin = Personne::findOrfail($id);
-        return view('admin.administrateur.form', compact('admin'));
+        $profils = Profil::all();
+        return view('admin.administrateur.form', compact('admin', 'profils'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(PersonneFormRequest $request, string $id)
+   /* public function update(PersonneFormRequest $request, string $id)
     {
         $personne = Personne::findOrFail($id);
 
@@ -119,9 +120,41 @@ class AdminController extends Controller
             $personne->photo = $imagePath;
         }
 
-        $personne->update( $validatedData);
+        $personne->update($validatedData);
+
         return redirect()->route('admin.administrateur.index')->with('success', 'La personne a été modifiée avec succès!');
+    }*/
+
+    public function update(PersonneFormRequest $request, $id)
+    {
+        $validatedData = $request->validated();
+
+        $personne = Personne::findOrFail($id);
+
+        if ($request->hasFile('photo')) {
+            if ($personne->photo) {
+                Storage::disk('public')->delete($personne->photo);
+            }
+            $imagePath = $request->file('photo')->store('photos', 'public');
+            $personne->photo = $imagePath;
+        }
+
+        $personne->update($validatedData);
+
+        $user = User::findOrfail($personne->id_personne);
+        $user->name = $personne->nom;
+        $user->email = $personne->email;
+        $user->profil = $personne->profil;
+
+        $user->save();
+
+        DB::table('profil_user')
+            ->where('user_id', $user->id)
+            ->update(['profil_id' => $personne->profil]);
+
+        return redirect()->route('admin.administrateur.index')->with('success', 'Profil mis à jour avec succès.');
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -135,4 +168,25 @@ class AdminController extends Controller
         $eleveur->delete();
         return to_route('admin.administrateur.index')->with('success', 'L\'eleveur a bien été supprimer');
     }
+
+    public function bloquer(string $id)
+    {
+        $eleveur = Personne::findOrfail($id);
+        $eleveur->statut = 0;
+        $eleveur->save();
+        return to_route('admin.administrateur.index')->with('success', 'L\'eleveur a bien été bloquer');
+    }
+
+    public function debloquer(string $id)
+    {
+        $eleveur = Personne::findOrfail($id);
+        $eleveur->statut = 1;
+        $eleveur->save();
+        return to_route('admin.administrateur.index')->with('success', 'L\'eleveur a bien été debloquer');
+    }
+
+
+
+
+
 }

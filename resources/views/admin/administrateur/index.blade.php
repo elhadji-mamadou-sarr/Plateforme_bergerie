@@ -53,6 +53,7 @@
                             <th>Eleveur</th>
                             <th>email</th>
                             <th>contact</th>
+                            <th>statut</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -67,9 +68,16 @@
                             <td>{{ $eleveur->email }}</td>
                             <td>{{ $eleveur->telephone }}</td>
                             <td>
-                                <a href="{{ route('admin.administrateur.show', $eleveur) }}" class="status process">Details</a>
-                                <a href="{{ route('admin.administrateur.edit', $eleveur) }}" class="status completed">modifier</a>
-                                <a href="{{ route('admin.administrateur.delete', $eleveur) }}" class="status pending">Supprimer</a>
+                                @if ($eleveur->statut == 1)
+                                    <a href="{{ route('admin.administrateur.bloquer', $eleveur) }}" class="status pending">Bloquer</a>
+                                @else
+                                    <a href="{{ route('admin.administrateur.debloquer', $eleveur) }}" class="status debloquer">Debloquer</a>
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{ route('admin.administrateur.show', $eleveur) }}" class="statuss process"><i class='bx bxs-user-detail'></i></a>
+                                <a href="{{ route('admin.administrateur.edit', $eleveur) }}" class="statuss completed"><i class='bx bx-edit'></i></a>
+                                <a href="{{ route('admin.administrateur.delete', $eleveur) }}" class="statuss pending"><i class='bx bxs-trash'></i></a>
                             </td>
                         </tr>
                         @endforeach

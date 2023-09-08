@@ -36,10 +36,11 @@ Route::get('/storage/{filename}', function ($filename) {
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'profil:Administrateur'])->group(function () {
     Route::resource('administrateur', AdminController::class)->except('destroy');
     Route::get('eleveur/{id}/delete', [AdminController::class, 'destroy'])->name('administrateur.delete');
-
+    Route::get('administrateur/{id}/bloquer',[AdminController::class, 'bloquer'])->name('administrateur.bloquer');
+    Route::get('administrateur/{id}/debloquer',[AdminController::class, 'debloquer'])->name('administrateur.debloquer');
 });
 
-Route::prefix('eleveur')->name('eleveur.')->middleware(['auth', 'profil:Administrateur'])->group(function (){
+Route::prefix('eleveur')->name('eleveur.')->middleware(['auth', 'profil:Eleveur,Administrateur'])->group(function (){
     Route::resource('mouton', EleveurController::class);
     Route::get('mouton/{id}/delete', [AdminController::class, 'destroy'])->name('mouton.delete');
 
@@ -47,10 +48,11 @@ Route::prefix('eleveur')->name('eleveur.')->middleware(['auth', 'profil:Administ
 
     Route::get('/', [MoutonController::class, 'index'])->name('index');
     Route::get('details/{mouton}', [MoutonController::class, 'show'])->name('detail.mouton');
-
+    Route::get('contact', [MoutonController::class, 'contact'])->name('client.contact');
+    Route::post('inscription', [MoutonController::class, 'inscrire'])->name('eleveur.inscription');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified',])->group(function () {
-    Route::get('accueil/', [AccueilController::class, 'index'])->name('accueil');
+    Route::get('accueil/', [AdminController::class, 'index'])->name('accueil');
 });
 
 

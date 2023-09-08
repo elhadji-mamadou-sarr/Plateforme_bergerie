@@ -39,6 +39,10 @@ class PersonneUserSeeder extends Seeder
             'name' => 'Administrateur',
         ]))->save();
 
+        (new Profil([
+            'name' => 'Eleveur',
+        ]))->save();
+
 
 
     }

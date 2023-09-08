@@ -58,7 +58,6 @@ class EleveurController extends Controller
         $mouton->prix = $validatedData['prix'];
         $mouton->personne_id = $validatedData['personne_id'];
         $mouton->image = $imagePath;
-
         $mouton->save();
 
         return redirect()->route('eleveur.mouton.index')->with('success', 'Mouton ajouté avec succès.');
