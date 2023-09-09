@@ -30,7 +30,7 @@
 
                     <div class="right-side">
                         <div class="topic-text">Nous contacter</div>
-                        <form action="{{ route('client.contact')}}">
+                        <form action="{{ route('client.contact', $mouton)}}">
                                 <div class="input-box">
                                     <input type="text" name="name" placeholder="Enter your name">
                                 </div>
@@ -41,7 +41,7 @@
                                     <textarea name="message" id="" placeholder="Entrer votre message" cols="30" rows="10"></textarea>
                                 </div>
                                 <div class="button">
-                                    <input type="button" value="Contacter" >
+                                    <input type="submit" value="Contacter" >
                                 </div>
                         </form>
                     </div>

@@ -24,7 +24,7 @@
             <nav class="navbar">
                 <span class="hamburger-btn material-symbols-rounded">menu</span>
                 <a href="#" class="logo">
-                    <img src="{{ asset('storage/kharBi.jpg') }}" alt="logo">
+                    <img src="{{ asset('storage/logo.jpeg') }}" alt="logo">
                     <h2>Khar-bi</h2>
                 </a>
                 <ul class="links">
@@ -169,7 +169,7 @@
         <div class="content">
           <div class="top">
             <div class="logo-details">
-              <i class="fab fa-slack"></i>
+                <img src="{{ asset('storage/logo.jpeg') }}" alt="" width="50px" style="border-radius: 50%;">
               <span class="logo_name">Kharb-bi</span>
             </div>
             <div class="media-icons">

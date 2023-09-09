@@ -29,14 +29,16 @@
             <ul class="side-menu top">
                 <li >
                     <a href="{{ route('admin.administrateur.index') }}">
-                        <i class='bx bxs-dashboard' ></i>
+                        <i class='bx bxs-group'></i>
                         <span class="text">Eleveurs</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="{{ route('eleveur.mouton.index') }}">
-                        <i class='bx bxs-dashboard' ></i>
+                        <i class='bx bxs-dashboar'>
+                            <img src="{{ asset('storage/mouton.png') }}" style="width: 45px;">
+                        </i>
                         <span class="text">Moutons</span>
                     </a>
                 </li>
@@ -71,7 +73,9 @@
             <ul class="side-menu top">
                 <li class="active">
                     <a href="{{ route('eleveur.mouton.index') }}">
-                        <i class='bx bxs-dashboard' ></i>
+                        <i class='bx bxs-dashboar'>
+                            <img src="{{ asset('storage/mouton.png') }}" style="width: 45px;">
+                        </i>
                         <span class="text">Moutons</span>
                     </a>
                 </li>

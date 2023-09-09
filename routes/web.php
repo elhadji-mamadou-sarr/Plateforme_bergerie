@@ -46,17 +46,21 @@ Route::prefix('eleveur')->name('eleveur.')->middleware(['auth', 'profil:Eleveur,
 
 });
 
-    Route::get('/', [MoutonController::class, 'index'])->name('index');
-    Route::get('details/{mouton}', [MoutonController::class, 'show'])->name('detail.mouton');
-    Route::get('contact', [MoutonController::class, 'contact'])->name('client.contact');
-    Route::post('inscription', [MoutonController::class, 'inscrire'])->name('eleveur.inscription');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified',])->group(function () {
     Route::get('accueil/', [AdminController::class, 'index'])->name('accueil');
 });
 
+    Route::get('/', [MoutonController::class, 'index'])->name('index');
+    Route::get('details/{mouton}', [MoutonController::class, 'show'])->name('detail.mouton');
+    Route::get('contact/{mouton}', [MoutonController::class, 'contact'])->name('client.contact');
+    Route::post('inscription', [MoutonController::class, 'inscrire'])->name('eleveur.inscription');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+
+
+
