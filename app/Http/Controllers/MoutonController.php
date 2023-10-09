@@ -91,7 +91,7 @@ class MoutonController extends Controller
 
             Mail::to($emailProprietaire)->send(new ContactPourMoutonMail($mouton, $data));
 
-            return back()->with('success', 'Votre message a été envoyé avec succès au propriétaire du mouton.');
+            return back()->with('success', 'Votre message est bien envoyé au propriétaire du mouton.');
         } else {
             return back()->with('error', 'Le propriétaire du mouton n\'a pas été trouvé.');
         }
@@ -104,7 +104,7 @@ class MoutonController extends Controller
             'prenom' => 'required|string',
             'email' => 'required|string',
             'profil' => 'nullable|string',
-            'telephone' => 'required|integer',
+            'telephone' => 'required|numeric|max:40',
             'ville' => 'required|string',
             'adresse' => 'required|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -143,18 +143,6 @@ class MoutonController extends Controller
             'user' => $user,
         );
 
-        $emailBody = view('template-email', $data)->render();
-
-        $emailConfig = array(
-            'mail_from_email' => env('MAIL_FROM_ADDRESS'),
-            'mail_from_name' => env('MAIL_FROM_NAME'),
-            'mail_recipient_email' => $user->email,
-            'mail_recipient_name' => $user->nom,
-            'mail_subject' => 'Bienvenue',
-            'mail_body' => $emailBody
-        );
-
-      //  if(sendEmail($emailConfig)){
 
             Mail::to($user->email)->send(new InscriptionMail($user)); // Envoyer un e-mail avec le Mailable
 

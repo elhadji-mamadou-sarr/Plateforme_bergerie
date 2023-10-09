@@ -17,24 +17,26 @@
 
         <ul class="box-info">
             <li>
-                <i class='bx bxs-calendar-check' ></i>
+                <i class='' >
+                    <img src="{{ asset('storage/mouton.png') }}" style="width: 100px;">
+                </i>
                 <span class="text">
-                    <h3>1020</h3>
-                    <p>New Order</p>
+                    <h3>{{ $moutons->count() }}</h3>
+                    <p>Moutons</p>
                 </span>
             </li>
             <li>
                 <i class='bx bxs-group' ></i>
                 <span class="text">
-                    <h3>2834</h3>
-                    <p>Visitors</p>
+                    <h3>{{ $eleveurs->count() }}</h3>
+                    <p>Eleveurs</p>
                 </span>
             </li>
             <li>
                 <i class='bx bxs-dollar-circle' ></i>
                 <span class="text">
                     <h3>$2543</h3>
-                    <p>Total Sales</p>
+                    <p>Revenus</p>
                 </span>
             </li>
         </ul>

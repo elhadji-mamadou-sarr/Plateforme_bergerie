@@ -33,27 +33,6 @@
                         <span class="text">Eleveurs</span>
                     </a>
                 </li>
-
-                <li>
-                    <a href="{{ route('eleveur.mouton.index') }}">
-                        <i class='bx bxs-dashboar'>
-                            <img src="{{ asset('storage/mouton.png') }}" style="width: 45px;">
-                        </i>
-                        <span class="text">Moutons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class='bx bxs-shopping-bag-alt' ></i>
-                        <span class="text">My Store</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bxs-doughnut-chart' ></i>
-                        <span class="text">Analytics</span>
-                    </a>
-                </li>
                 <li>
                     <a href="#">
                         <i class='bx bxs-message-dots' ></i>
@@ -77,18 +56,6 @@
                             <img src="{{ asset('storage/mouton.png') }}" style="width: 45px;">
                         </i>
                         <span class="text">Moutons</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bxs-shopping-bag-alt' ></i>
-                        <span class="text">My Store</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class='bx bxs-doughnut-chart' ></i>
-                        <span class="text">Analytics</span>
                     </a>
                 </li>
                 <li>
@@ -156,17 +123,11 @@
             </a>
         </nav>
 
-            <button onclick="window.history.back()" style="margin-left: 10%; margin-top: 2%;">
-                <i class='bx bx-chevron-left' ></i>Retour
-            </button>
-
     </section>
 
 
 
     <div class="container mt-4">
-
-
 
         <div class="main">
             @if (session('success'))

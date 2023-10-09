@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PersonneFormRequest;
+use App\Models\Mouton;
 use App\Models\Personne;
 use App\Models\Profil;
 use App\Models\User;
@@ -20,7 +21,8 @@ class AdminController extends Controller
     public function index()
     {
         $eleveurs = Personne::all()->where('profil', '2');
-        return view('admin.administrateur.index', compact('eleveurs'));
+        $moutons = Mouton::all();
+        return view('admin.administrateur.index', compact('eleveurs', 'moutons'));
     }
 
     /**

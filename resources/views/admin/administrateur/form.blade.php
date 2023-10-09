@@ -1,11 +1,11 @@
 @extends('admin.base')
 
-@section('title', $admin->exists ? "Modifier un un conge" : "Ajouter une personne")
+@section('title', $admin->exists ? "Modifier un l'Eleveur" : "Ajouter une personne")
 
 @section('content')
 
     <div class="containerr form position-absolute top-50 start-50 translate-middle" style="margin-top: 3%;">
-        <div class="title">Inscription</div>
+        <div class="title">@yield('title')</div>
         <div class="contentt">
             <form action="{{ route($admin->exists ? 'admin.administrateur.update' : 'admin.administrateur.store', $admin) }}"
                 method="post" class="vstack gap-3 row g-3"  enctype="multipart/form-data">

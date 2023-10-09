@@ -1,14 +1,31 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-<link rel="stylesheet" href="{{ asset('storage/css/accueil.css') }}">
 
 <div class="bodyy">
 <div class="d-block">
 
+            @if (session('success'))
+                <div class="custom-modal">
+                    <div class="succes succes-animation icon-top ">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="succes border-bottom"></div>
+                    <div class="content">
+                        <p class="message-type">{{ session('success') }}</p>
+                    </div>
+                </div>
+            @endif
 
-    <div class="d-flex justify-content-between m-3">
-            <button onclick="window.history.back()">Retour</button>
-    </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger" >
+                    <ul class="my-0">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
     <div class="contenue" >
 
@@ -41,7 +58,7 @@
                                     <textarea name="message" id="" placeholder="Entrer votre message" cols="30" rows="10"></textarea>
                                 </div>
                                 <div class="button">
-                                    <input type="submit" value="Contacter" >
+                                    <button>Commander</button>
                                 </div>
                         </form>
                     </div>
@@ -78,13 +95,7 @@
 
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-        *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins',sans-serif;
-        }
+
         .bodyy{
         display: flex;
         width: 100%;
@@ -114,6 +125,7 @@
         justify-content: space-between;
         box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.15);
         position: relative;
+
         }
         .contenue::before{
         content: '';
@@ -166,24 +178,7 @@
         color: #fc6989;
         font-size: 30px;
         }
-        .box.one .button1{
-        margin-top: 55px;
-        }
-        .box.one .button1 button{
-        outline: none;
-        border:none;
-        padding: 8px 16px;
-        border-radius: 6px;
-        font-size: 18px;
-        font-weight: 500;
-        color: #fff;
-        background: #00e6e6;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        }
-        .button1 button:hover{
-        transform: scale(0.98);
-        }
+
         .contenue .box.two .image{
         position: relative;
         right: 0;
@@ -314,24 +309,7 @@
     .right-side .input-box textarea{
     padding-top: 6px;
     }
-    .right-side .button{
-    display: inline-block;
-    margin-top: 12px;
-    }
-    .right-side .button input[type="button"]{
-    color: #fff;
-    font-size: 18px;
-    outline: none;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 6px;
-    background:linear-gradient(135deg, #71b7e6, #9b59b6) ;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    }
-    .button input[type="button"]:hover{
-    background: linear-gradient(135deg, #9b59b6, #71b7e6);
-    }
+
 
     button{
     color: #fff;
@@ -347,6 +325,103 @@
     button:hover{
     background: linear-gradient(135deg, #9b59b6, #71b7e6);
     }
+
+
+    /********************************
+    Message de succe
+    *******************************/
+
+    .succes {
+    background-color: #4BB543;
+}
+
+.succes-animation {
+    animation: succes-pulse 2s infinite;
+}
+
+
+.custom-modal {
+    position: relative;
+    width: 350px;
+    min-height: 100px;
+    background-color: #fff;
+    border-radius: 30px;
+    margin: 40px 10px;
+}
+
+.custom-modal .content {
+    padding-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.custom-modal .content .type {
+    font-size: 18px;
+    color: #999;
+}
+
+.custom-modal .content .message-type {
+    font-size: 24px;
+    color: #000;
+}
+
+.custom-modal .border-bottom {
+    position: absolute;
+    width: 300px;
+    height: 20px;
+    border-radius: 0 0 30px 30px;
+    bottom: -20px;
+    margin: 0 25px;
+}
+
+.custom-modal .icon-top {
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    border-radius: 50%;
+    top: -30px;
+    margin: 0 125px;
+    font-size: 30px;
+    color: #fff;
+    line-height: 100px;
+    text-align: center;
+}
+
+@keyframes succes-pulse {
+    0% {
+        box-shadow: 0px 0px 30px 20px rgba(75, 181, 67, .2);
+    }
+
+    50% {
+        box-shadow: 0px 0px 30px 20px rgba(75, 181, 67, .4);
+    }
+
+    100% {
+        box-shadow: 0px 0px 30px 20px rgba(75, 181, 67, .2);
+    }
+}
+
+@keyframes danger-pulse {
+    0% {
+        box-shadow: 0px 0px 30px 20px rgba(202, 11, 0, .2);
+    }
+
+    50% {
+        box-shadow: 0px 0px 30px 20px rgba(202, 11, 0, .4);
+    }
+
+    100% {
+        box-shadow: 0px 0px 30px 20px rgba(202, 11, 0, .2);
+    }
+}
+
+
+
+@media only screen and (max-width: 800px) {
+    .page-wrapper {
+        flex-direction: column;
+    }
+}
 
 
 </style>
