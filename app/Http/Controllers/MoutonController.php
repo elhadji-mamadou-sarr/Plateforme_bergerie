@@ -104,7 +104,7 @@ class MoutonController extends Controller
             'prenom' => 'required|string',
             'email' => 'required|string',
             'profil' => 'nullable|string',
-            'telephone' => 'required|numeric|max:40',
+            'telephone' => 'required|numeric|min:4',
             'ville' => 'required|string',
             'adresse' => 'required|string',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

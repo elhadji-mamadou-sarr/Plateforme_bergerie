@@ -28,7 +28,7 @@
                         <tr>
                             <td>
                                 <img src="{{ asset('storage/' . $mouton->image) }}" alt="Image du mouton">
-                                
+
                             </td>
                             <td>{{ $mouton->race }}</td>
                             <td>{{ $mouton->généalogie }}</td>
